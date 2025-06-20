@@ -8,7 +8,7 @@
 1. Home - 스니펫 저장
 처음 시작페이지입니다. 이 곳에서 자주 사용하는 **스니펫**을 저장할 수 있습니다.
 
-![Image](https://github.com/user-attachments/assets/b7e28430-4387-421b-95c9-b93a4528807b)
+![Image](https://github.com/user-attachments/assets/8d659464-25ad-4386-8c72-f33c3ba4746f)
 
 2. Vault - 스니펫 관리
 저장된 스니펫을 **폴더별**로 모아 볼 수 있습니다.
