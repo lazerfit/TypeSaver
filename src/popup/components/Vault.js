@@ -5,6 +5,7 @@ import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { useDarkMode } from "@rbnd/react-dark-mode";
+import { IoCopyOutline } from "react-icons/io5";
 Modal.setAppElement("#root");
 const Vault = () => {
     const [folderList, setFolderList] = useState([]);
@@ -64,6 +65,12 @@ const Vault = () => {
             });
         });
     };
+    const handleCopyText = (e, text) => {
+        e.stopPropagation();
+        navigator.clipboard
+            .writeText(text)
+            .catch((e) => console.error("Failed to copy text:", e));
+    };
     useEffect(() => {
         chrome.storage.local.get("folder", (result) => {
             setFolderList(result.folder ?? []);
@@ -76,6 +83,6 @@ const Vault = () => {
     }, [folderName]);
     return (_jsxs("div", { className: "vault-wrapper", children: [_jsxs("div", { className: "vault-content-wrapper", children: [_jsxs("div", { className: "select-wrapper", children: [_jsxs("select", { className: "vault-select", value: folderName, onChange: (e) => setFolderName(e.target.value), children: [_jsx("option", { value: "default", children: "\uD3F4\uB354 \uC5C6\uC74C" }), folderList.map((folder) => {
                                         return (_jsx("option", { value: folder.name, children: folder.name }, folder.id));
-                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("div", { className: "snippet-list-wrapper", children: snippetsByFolder.map((snippet) => (_jsx("button", { className: "snippet-item", onClick: () => openModal(snippet), children: snippet.title }, snippet.id))) })] }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsxs("div", { className: "modal-vault-wrapper", children: [_jsx("div", { className: "back-button-wrapper", children: _jsx(IoIosArrowBack, { className: "back-button", onClick: closeModal }) }), isEditMode ? (_jsxs("div", { className: "modal-edit-content-wrapper", children: [_jsx("input", { className: "modal-edit-input", type: "text", value: snippetTitle, onChange: handleOnChangeTitle }), _jsx("textarea", { className: "modal-edit-textarea", value: snippetText, onChange: handleOnChangeText }), _jsxs("div", { className: "modal-button-edit-wrapper", children: [_jsx("button", { className: "modal-edit-button", children: "\uC800\uC7A5" }), _jsx("button", { className: "modal-edit-button", onClick: handleCloseEditMode, children: "\uCDE8\uC18C" })] })] })) : (_jsxs("div", { className: "modal-edit-content-wrapper", children: [_jsx("div", { className: "modal-snippet-title", children: selectedSnippet?.title }), _jsx("div", { className: "modal-snippet-text", children: selectedSnippet?.text }), _jsxs("div", { className: "modal-button-edit-wrapper", children: [_jsx("button", { className: "modal-snippet-button-delete", onClick: () => handleDeleteSnippet(selectedSnippet?.id ?? ""), children: "\uC0AD\uC81C" }), _jsx("button", { className: "modal-snippet-button-edit", onClick: () => handleEditClick(selectedSnippet?.title ?? "", selectedSnippet?.text ?? ""), children: "\uD3B8\uC9D1" })] })] }))] }) })] }));
+                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("div", { className: "snippet-list-wrapper", children: snippetsByFolder.map((snippet) => (_jsxs("button", { className: "snippet-item", onClick: () => openModal(snippet), children: [snippet.title, _jsx("button", { type: "button", className: "snippet-item-copy-button", onClick: (e) => handleCopyText(e, snippet.text), tabIndex: 0, "aria-label": "\uBCF5\uC0AC", children: _jsx(IoCopyOutline, {}) })] }, snippet.id))) })] }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsxs("div", { className: "modal-vault-wrapper", children: [_jsx("div", { className: "back-button-wrapper", children: _jsx(IoIosArrowBack, { className: "back-button", onClick: closeModal }) }), isEditMode ? (_jsxs("div", { className: "modal-edit-content-wrapper", children: [_jsx("input", { className: "modal-edit-input", type: "text", value: snippetTitle, onChange: handleOnChangeTitle }), _jsx("textarea", { className: "modal-edit-textarea", value: snippetText, onChange: handleOnChangeText }), _jsxs("div", { className: "modal-button-edit-wrapper", children: [_jsx("button", { className: "modal-edit-button", children: "\uC800\uC7A5" }), _jsx("button", { className: "modal-edit-button", onClick: handleCloseEditMode, children: "\uCDE8\uC18C" })] })] })) : (_jsxs("div", { className: "modal-edit-content-wrapper", children: [_jsx("div", { className: "modal-snippet-title", children: selectedSnippet?.title }), _jsx("div", { className: "modal-snippet-text", children: selectedSnippet?.text }), _jsxs("div", { className: "modal-button-edit-wrapper", children: [_jsx("button", { className: "modal-snippet-button-delete", onClick: () => handleDeleteSnippet(selectedSnippet?.id ?? ""), children: "\uC0AD\uC81C" }), _jsx("button", { className: "modal-snippet-button-edit", onClick: () => handleEditClick(selectedSnippet?.title ?? "", selectedSnippet?.text ?? ""), children: "\uD3B8\uC9D1" })] })] }))] }) })] }));
 };
 export default Vault;

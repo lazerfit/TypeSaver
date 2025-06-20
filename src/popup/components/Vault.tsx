@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import type { Folder } from "./Folder";
 import { useDarkMode } from "@rbnd/react-dark-mode";
+import { IoCopyOutline } from "react-icons/io5";
 
 Modal.setAppElement("#root");
 
@@ -91,6 +92,16 @@ const Vault = () => {
     });
   };
 
+  const handleCopyText = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    text: string,
+  ) => {
+    e.stopPropagation();
+    navigator.clipboard
+      .writeText(text)
+      .catch((e) => console.error("Failed to copy text:", e));
+  };
+
   useEffect(() => {
     chrome.storage.local.get("folder", (result) => {
       setFolderList((result.folder as Folder[]) ?? []);
@@ -131,6 +142,15 @@ const Vault = () => {
               onClick={() => openModal(snippet)}
             >
               {snippet.title}
+              <button
+                type="button"
+                className="snippet-item-copy-button"
+                onClick={(e) => handleCopyText(e, snippet.text)}
+                tabIndex={0}
+                aria-label="복사"
+              >
+                <IoCopyOutline />
+              </button>
             </button>
           ))}
         </div>
