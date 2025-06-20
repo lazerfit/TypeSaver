@@ -1,0 +1,47 @@
+{
+  "appDescription": {
+    "message": "자주 사용하는 문구를 간편하게 저장하고 우클릭 메뉴를 통해 신속하게 입력하세요!",
+    "description": "익스텐션 설명"
+  },
+  "HomeInputPlaceholder": {
+    "message": "제목을 입력해주세요..",
+    "description": "홈페이지 입력 필드 플레이스홀더"
+  },
+  "HomeTextareaPlaceholder": {
+    "message": "내용을 입력해주세요..",
+    "description": "홈페이지 텍스트에어리어 플레이스홀더"
+  },
+  "HomeModalTitle": {
+    "message": "제목과 내용을 입력해주세요."
+  },
+  "HomeModalButton": {
+    "message": "닫기"
+  },
+  "HomeSaveButton": {
+    "message": "저장"
+  },
+  "SelectOptionDefault": {
+    "message": "폴더 없음"
+  },
+  "ToastSnippetSave": {
+    "message": "🚀 저장되었습니다."
+  },
+  "FolderDeleteConfirm": {
+    "message": "🔥 정말로 폴더를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+  },
+  "FolderInputPlaceholder": {
+    "message": "폴더 이름을 입력해주세요.."
+  },
+  "Cancel": {
+    "message": "취소"
+  },
+  "Delete": {
+    "message": "삭제"
+  },
+  "Modify": {
+    "message": "수정"
+  },
+  "VaultSnippetDeleteConfirm": {
+    "message": "🔥 정말로 이 스니펫을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+  }
+}

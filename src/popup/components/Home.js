@@ -57,7 +57,7 @@ const Home = () => {
                 setTitle("");
                 setText("");
                 setSelectedFolder("");
-                setToastText("저장되었습니다.");
+                setToastText(chrome.i18n.getMessage("ToastSnippetSave"));
                 setShowToast(true);
                 setTimeout(() => {
                     setShowToast(false);
@@ -72,8 +72,8 @@ const Home = () => {
             setFolders(storedFolders);
         });
     });
-    return (_jsxs("div", { className: "home-wrapper", children: [_jsxs("div", { className: "content-wrapper", children: [_jsxs("div", { className: "select-wrapper", children: [_jsxs("select", { className: "folder-select", name: "\uD3F4\uB354", value: selectedFolder, onChange: handleFolderChange, children: [_jsx("option", { value: "default", children: "\uD3F4\uB354 \uC5C6\uC74C" }), folders.map((folder) => {
+    return (_jsxs("div", { className: "home-wrapper", children: [_jsxs("div", { className: "content-wrapper", children: [_jsxs("div", { className: "select-wrapper", children: [_jsxs("select", { className: "folder-select", name: "\uD3F4\uB354", value: selectedFolder, onChange: handleFolderChange, children: [_jsx("option", { value: "default", children: chrome.i18n.getMessage("SelectOptionDefault") }), folders.map((folder) => {
                                         return (_jsx("option", { value: folder.name, children: folder.name }, folder.id));
-                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("input", { className: "title-input", type: "text", placeholder: "\uC81C\uBAA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694..", value: title, onChange: handleTitleChange }), _jsx("textarea", { className: "text-input", placeholder: "\uB0B4\uC6A9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694..", value: text, onChange: handleTextChange }), _jsx("button", { className: "save-button", onClick: handleSubmit, children: _jsx("span", { children: "\uC800\uC7A5" }) })] }), _jsx(Toast, { text: toastText, showToast: showToast }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsx("div", { className: "modal-home-wrapper", children: _jsxs("div", { className: "modal-home-content-wrapper", children: [_jsx("h2", { children: "\uC81C\uBAA9\uACFC \uB0B4\uC6A9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694." }), _jsx("button", { className: "modal-close-button", onClick: closeModal, children: "\uB2EB\uAE30" })] }) }) })] }));
+                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("input", { className: "title-input", type: "text", placeholder: chrome.i18n.getMessage("HomeInputPlaceholder"), value: title, onChange: handleTitleChange }), _jsx("textarea", { className: "text-input", placeholder: chrome.i18n.getMessage("HomeTextareaPlaceholder"), value: text, onChange: handleTextChange }), _jsx("button", { className: "save-button", onClick: handleSubmit, children: _jsx("span", { children: chrome.i18n.getMessage("HomeSaveButton") }) })] }), _jsx(Toast, { text: toastText, showToast: showToast }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsx("div", { className: "modal-home-wrapper", children: _jsxs("div", { className: "modal-home-content-wrapper", children: [_jsx("h2", { children: chrome.i18n.getMessage("HomeModalTitle") }), _jsx("button", { className: "modal-close-button", onClick: closeModal, children: chrome.i18n.getMessage("HomeModalButton") })] }) }) })] }));
 };
 export default Home;

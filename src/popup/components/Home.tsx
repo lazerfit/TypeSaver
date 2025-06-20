@@ -71,7 +71,7 @@ const Home = () => {
           setTitle("");
           setText("");
           setSelectedFolder("");
-          setToastText("저장되었습니다.");
+          setToastText(chrome.i18n.getMessage("ToastSnippetSave"));
           setShowToast(true);
           setTimeout(() => {
             setShowToast(false);
@@ -98,7 +98,9 @@ const Home = () => {
             value={selectedFolder}
             onChange={handleFolderChange}
           >
-            <option value="default">폴더 없음</option>
+            <option value="default">
+              {chrome.i18n.getMessage("SelectOptionDefault")}
+            </option>
             {folders.map((folder) => {
               return (
                 <option key={folder.id} value={folder.name}>
@@ -112,18 +114,18 @@ const Home = () => {
         <input
           className="title-input"
           type="text"
-          placeholder="제목을 입력해주세요.."
+          placeholder={chrome.i18n.getMessage("HomeInputPlaceholder")}
           value={title}
           onChange={handleTitleChange}
         />
         <textarea
           className="text-input"
-          placeholder="내용을 입력해주세요.."
+          placeholder={chrome.i18n.getMessage("HomeTextareaPlaceholder")}
           value={text}
           onChange={handleTextChange}
         />
         <button className="save-button" onClick={handleSubmit}>
-          <span>저장</span>
+          <span>{chrome.i18n.getMessage("HomeSaveButton")}</span>
         </button>
       </div>
       <Toast text={toastText} showToast={showToast} />
@@ -134,9 +136,9 @@ const Home = () => {
       >
         <div className="modal-home-wrapper">
           <div className="modal-home-content-wrapper">
-            <h2>제목과 내용을 입력해주세요.</h2>
+            <h2>{chrome.i18n.getMessage("HomeModalTitle")}</h2>
             <button className="modal-close-button" onClick={closeModal}>
-              닫기
+              {chrome.i18n.getMessage("HomeModalButton")}
             </button>
           </div>
         </div>

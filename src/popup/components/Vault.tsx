@@ -79,7 +79,7 @@ const Vault = () => {
   };
 
   const handleDeleteSnippet = (id: string) => {
-    if (!window.confirm("정말로 이 스니펫을 삭제하시겠습니까?")) {
+    if (!window.confirm(chrome.i18n.getMessage("VaultSnippetDeleteConfirm"))) {
       return;
     }
     chrome.storage.local.get([folderName], (result) => {
@@ -123,7 +123,9 @@ const Vault = () => {
             value={folderName}
             onChange={(e) => setFolderName(e.target.value)}
           >
-            <option value="default">폴더 없음</option>
+            <option value="default">
+              {chrome.i18n.getMessage("SelectOptionDefault")}
+            </option>
             {folderList.map((folder: Folder) => {
               return (
                 <option key={folder.id} value={folder.name}>
@@ -178,12 +180,14 @@ const Vault = () => {
                 onChange={handleOnChangeText}
               />
               <div className="modal-button-edit-wrapper">
-                <button className="modal-edit-button">저장</button>
+                <button className="modal-edit-button">
+                  {chrome.i18n.getMessage("HomeSaveButton")}
+                </button>
                 <button
                   className="modal-edit-button"
                   onClick={handleCloseEditMode}
                 >
-                  취소
+                  {chrome.i18n.getMessage("Cancel")}
                 </button>
               </div>
             </div>
@@ -198,7 +202,7 @@ const Vault = () => {
                   className="modal-snippet-button-delete"
                   onClick={() => handleDeleteSnippet(selectedSnippet?.id ?? "")}
                 >
-                  삭제
+                  {chrome.i18n.getMessage("Delete")}
                 </button>
                 <button
                   className="modal-snippet-button-edit"
@@ -209,7 +213,7 @@ const Vault = () => {
                     )
                   }
                 >
-                  편집
+                  {chrome.i18n.getMessage("Modify")}
                 </button>
               </div>
             </div>

@@ -11,19 +11,15 @@ chrome.storage.onChanged.addListener(() => {
 
 function createContextMenus() {
   chrome.contextMenus.removeAll(() => {
-    // 최상위 TypeSaver 메뉴 생성
     chrome.contextMenus.create({
       id: "typesaver",
       title: "TypeSaver",
       contexts: ["editable"],
     });
 
-    // 폴더 목록 가져오기
     chrome.storage.local.get(null, (result) => {
-      // 폴더 정보
       const folders = (result.folder as Folder[]) ?? [];
 
-      // default 폴더가 folder key에 없으면, 모든 key에서 default 폴더를 찾아 추가
       if (!folders.some((f) => f.name === "default")) {
         Object.keys(result).forEach((key) => {
           if (Array.isArray(result[key])) {
@@ -36,7 +32,6 @@ function createContextMenus() {
       }
 
       folders.forEach((folder) => {
-        // TypeSaver 하위에 폴더 메뉴 생성
         chrome.contextMenus.create({
           id: `folder-${folder.id}`,
           parentId: "typesaver",
@@ -44,7 +39,6 @@ function createContextMenus() {
           contexts: ["editable"],
         });
 
-        // 폴더별 스니펫 가져오기
         chrome.storage.local.get([folder.name], (res) => {
           const snippets = (res[folder.name] as Snippet[]) ?? [];
           snippets.forEach((snippet) => {

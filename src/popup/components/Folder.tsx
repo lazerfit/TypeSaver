@@ -127,7 +127,7 @@ const Folder = () => {
   };
 
   const handleDeleteFolder = (id: string) => {
-    if (!window.confirm("정말로 이 폴더를 삭제하시겠습니까?")) {
+    if (!window.confirm(chrome.i18n.getMessage("FolderDeleteConfirm"))) {
       return;
     }
     chrome.storage.local.get(["folder"], (result) => {
@@ -146,7 +146,7 @@ const Folder = () => {
         <input
           type="text"
           className="folder-input"
-          placeholder="폴더 이름을 입력해주세요.."
+          placeholder={chrome.i18n.getMessage("FolderInputPlaceholder")}
           value={folderName}
           onChange={handleInputChange}
         />
@@ -179,8 +179,12 @@ const Folder = () => {
               onChange={handleNewFolderNameChange}
             ></input>
             <div className="modal-button-wrapper">
-              <button onClick={handleSubmitEditedFolderName}>저장</button>
-              <button onClick={handeEditModeClose}>취소</button>
+              <button onClick={handleSubmitEditedFolderName}>
+                {chrome.i18n.getMessage("HomeSaveButton")}
+              </button>
+              <button onClick={handeEditModeClose}>
+                {chrome.i18n.getMessage("Cancel")}
+              </button>
             </div>
           </div>
         ) : (
@@ -190,9 +194,11 @@ const Folder = () => {
               <button
                 onClick={() => handleDeleteFolder(selectedFolder?.id ?? "")}
               >
-                삭제
+                {chrome.i18n.getMessage("Delete")}
               </button>
-              <button onClick={handleEditClick}>편집</button>
+              <button onClick={handleEditClick}>
+                {chrome.i18n.getMessage("Modify")}
+              </button>
             </div>
           </div>
         )}
