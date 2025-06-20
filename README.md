@@ -1,54 +1,40 @@
-# React + TypeScript + Vite
+# TypeSaver
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+반복적인 텍스트 입력에 시간을 낭비하고 계신가요? 
+자주 사용하는 문구를 편리하게 관리하고, 단 한 번의 클릭으로 손쉽게 입력하세요!
 
-Currently, two official plugins are available:
+## 🚀 사용 방법  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Home - 스니펫 저장   
+처음 시작페이지입니다. 이 곳에서 자주 사용하는 **스니펫**을 저장할 수 있습니다.  
 
-## Expanding the ESLint configuration
+![Image](https://github.com/user-attachments/assets/8d659464-25ad-4386-8c72-f33c3ba4746f)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. Vault - 스니펫 관리  
+저장된 스니펫을 **폴더별**로 모아 볼 수 있습니다.  
+삭제/수정 및 스니펫 내용을 클립보드에 복사할 수 있습니다.  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+![Image](https://github.com/user-attachments/assets/e44bbcf7-1bac-408b-aed5-7c4a882ed6ba)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Folder - 폴더 관리  
+폴더를 생성할 수 있습니다.  
+폴더 삭제와 폴더 이름을 수정할 수 있습니다.  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+![Image](https://github.com/user-attachments/assets/bb3a19ed-380e-4f4e-859c-418ef5ea5be1)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+4. Setting - 테마 설정  
+테마(Light/Dark)를 설정할 수 있습니다.  
+
+![Image](https://github.com/user-attachments/assets/53d5bee8-7be0-41bb-ab6c-317537032c39)
+![Image](https://github.com/user-attachments/assets/be97f8a9-71fe-4abe-975d-293acfcc5e66)
+
+5. ContextMenu - 우클릭으로 스니펫 입력  
+마우스 우클릭을 통해 스니펫을 `input` 또는 `textarea` 에 붙여넣을 수 있습니다.  
+마우스 우클릭 시 폴더별로 분류된 스니펫 목록이 나타나며, 원하는 스니펫을 클릭하면 자동으로 입력됩니다.  
+(일부 웹사이트의 특정 입력 필드에서는 작동하지 않을 수 있습니다.)  
+
+![Image](https://github.com/user-attachments/assets/751bd0b4-7fc3-4c85-a96d-56dc136220fd)
+
+## TODO  
+
+- [ ] 스니펫 검색 기능
