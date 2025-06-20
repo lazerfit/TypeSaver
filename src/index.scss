@@ -1,0 +1,86 @@
+@import url('https://fastly.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
+:root {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 200px;
+  min-height: 100px;
+  font-family: "Wanted Sans Variable", sans-serif;
+}
+
+.light-mode {
+  color-scheme: light;
+  background-color: #F8F7F4;
+  color: black;
+
+  input,
+  textarea,
+  select,
+  .modal-name {
+    background-color: white;
+  }
+}
+
+.dark-mode {
+  color-scheme: dark;
+  background-color: #262626;
+  color: #f7f7f7;
+
+  .modal-folder-wrapper,
+  .modal-home-wrapper,
+  .modal-vault-wrapper {
+    background-color: #262626;
+    color: #f7f7f7;
+
+    .modal-snippet-text,
+    .modal-snippet-title,
+    .modal-name,
+    .modal-edit-name,
+    .modal-edit-input {
+      background-color: #17171b;
+      color: #f7f7f7;
+    }
+  }
+
+  footer,
+  header {
+    background-color: #1a1a1a;
+    color: #f7f7f7;
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: #17171b;
+  }
+
+  button {
+    background-color: #8083ff;
+
+    &:hover {
+      background-color: #6c6fe6;
+    }
+  }
+}
+
+input {
+  font-family: "Wanted Sans Variable", sans-serif;
+}
+
+button {
+  font-family: "Wanted Sans Variable", sans-serif;
+  color: black;
+}
+
+button:active {
+  transform: scale(0.96);
+  transition: transform 0.1s;
+}
+
+textarea {
+  font-family: "Wanted Sans Variable", sans-serif;
+}

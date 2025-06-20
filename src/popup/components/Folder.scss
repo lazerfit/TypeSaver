@@ -1,0 +1,87 @@
+.folder-wrapper {
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  display: flex;
+  margin-top: 20px;
+}
+
+.folder-input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.folder-input-button {
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #1D3461;
+  color: white;
+
+  &:hover {
+    transition: background-color 0.2s, box-shadow 0.2s;
+    background-color: #16305a;
+    box-shadow: 0 4px 12px rgba(29, 52, 97, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    transition: transform 0.1s;
+  }
+}
+
+.folder-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 5px;
+  width: 100%;
+
+  .folder-item {
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+    &:active {
+      transform: scale(0.96);
+      transition: transform 0.1s;
+    }
+  }
+}
+
+.modal-folder-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+
+  .modal-name,
+  .modal-edit-name {
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  }
+
+  .modal-button-wrapper {
+    display: flex;
+    gap: 5px;
+    margin-top: 15px;
+  }
+}

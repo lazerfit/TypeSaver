@@ -1,0 +1,88 @@
+.setting-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  margin-top: 20px;
+  width: 240px;
+  gap: 10px;
+}
+
+.setting-dark-mode-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+  &::before {
+    content: '테마';
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    font-size: 13px;
+    color: #8083ff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .setting-dark-mode-select {
+    width: 220px;
+    padding: 8px;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+}
+
+.setting-about-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .setting-about-btn {
+    width: 220px;
+    padding: 8px;
+    margin: 0 auto;
+
+    .setting-about-btn-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      .setting-about-icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.modal-setting-about-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+
+  .modal-setting-description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 10px;
+
+    .modal-setting-about-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .modal-setting-about-text {
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+  }
+}
