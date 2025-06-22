@@ -1,12 +1,9 @@
 footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   bottom: 0;
   width: 100%;
   background-color: white;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #ddd !important;
 }
 
 .footer-content-wrapper {
@@ -15,15 +12,16 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .footer-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .icon {
+    cursor: pointer;
+    font-size: 32px;
+  }
 }
 
-.footer-content {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
-
-.icon {
-  cursor: pointer;
-  font-size: 32px;
-}

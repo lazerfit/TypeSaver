@@ -9,10 +9,16 @@ const Footer = () => {
     <footer>
       <div className="footer-content-wrapper">
         <div className="footer-content">
-          <CiVault className="icon" onClick={() => navigate("/vault")} />
-          <CiHome className="icon" onClick={() => navigate("/")} />
-          <CiFolderOn className="icon" onClick={() => navigate("/folder")} />
-          <CiSettings className="icon" onClick={() => navigate("/setting")} />
+          <CiVault className="icon" onClick={() => void navigate("/vault")} />
+          <CiHome className="icon" onClick={() => void navigate("/")} />
+          <CiFolderOn
+            className="icon"
+            onClick={() => void navigate("/folder")}
+          />
+          <CiSettings
+            className="icon"
+            onClick={() => void navigate("/setting")}
+          />
         </div>
       </div>
     </footer>

@@ -115,8 +115,8 @@ const Vault = () => {
   }, [folderName]);
 
   return (
-    <div className="vault-wrapper">
-      <div className="vault-content-wrapper">
+    <div className="wrapper">
+      <div className="content-wrapper">
         <div className="select-wrapper">
           <select
             className="vault-select"
@@ -140,7 +140,7 @@ const Vault = () => {
           {snippetsByFolder.map((snippet) => (
             <button
               key={snippet.id}
-              className="snippet-item"
+              className="list-item"
               onClick={() => openModal(snippet)}
             >
               {snippet.title}
@@ -151,7 +151,7 @@ const Vault = () => {
                 tabIndex={0}
                 aria-label="복사"
               >
-                <IoCopyOutline />
+                <IoCopyOutline className="copy-button" />
               </button>
             </button>
           ))}
@@ -162,50 +162,45 @@ const Vault = () => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div className="modal-vault-wrapper">
+        <div className="modal-wrapper">
           <div className="back-button-wrapper">
             <IoIosArrowBack className="back-button" onClick={closeModal} />
           </div>
           {isEditMode ? (
-            <div className="modal-edit-content-wrapper">
+            <div className="modal-wrapper">
               <input
-                className="modal-edit-input"
+                className="modal-input"
                 type="text"
                 value={snippetTitle}
                 onChange={handleOnChangeTitle}
               />
               <textarea
-                className="modal-edit-textarea"
+                className="modal-textarea"
                 value={snippetText}
                 onChange={handleOnChangeText}
               />
-              <div className="modal-button-edit-wrapper">
-                <button className="modal-edit-button">
+              <div className="modal-button-wrapper">
+                <button className="modal-button">
                   {chrome.i18n.getMessage("HomeSaveButton")}
                 </button>
-                <button
-                  className="modal-edit-button"
-                  onClick={handleCloseEditMode}
-                >
+                <button className="modal-button" onClick={handleCloseEditMode}>
                   {chrome.i18n.getMessage("Cancel")}
                 </button>
               </div>
             </div>
           ) : (
-            <div className="modal-edit-content-wrapper">
-              <div className="modal-snippet-title">
-                {selectedSnippet?.title}
-              </div>
-              <div className="modal-snippet-text">{selectedSnippet?.text}</div>
-              <div className="modal-button-edit-wrapper">
+            <div className="modal-wrapper">
+              <div className="modal-title">{selectedSnippet?.title}</div>
+              <div className="modal-text">{selectedSnippet?.text}</div>
+              <div className="modal-button-wrapper">
                 <button
-                  className="modal-snippet-button-delete"
+                  className="modal-button"
                   onClick={() => handleDeleteSnippet(selectedSnippet?.id ?? "")}
                 >
                   {chrome.i18n.getMessage("Delete")}
                 </button>
                 <button
-                  className="modal-snippet-button-edit"
+                  className="modal-button"
                   onClick={() =>
                     handleEditClick(
                       selectedSnippet?.title ?? "",

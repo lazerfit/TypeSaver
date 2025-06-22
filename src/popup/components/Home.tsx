@@ -7,6 +7,7 @@ import Toast from "../../common/Toast";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import type { Folder } from "./Folder.tsx";
+import { useDarkMode } from "@rbnd/react-dark-mode";
 
 Modal.setAppElement("#root");
 
@@ -25,6 +26,7 @@ const Home = () => {
   const [toastText, setToastText] = useState("");
   const [showToast, setShowToast] = useState(false);
   const { isModalOpen, openModal, closeModal } = useModal();
+  const { mode } = useDarkMode();
   const customStyles = {
     content: {
       top: "50%",
@@ -33,9 +35,9 @@ const Home = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "220px",
-      height: "120px",
-      backgroundColor: "#F8F7F4",
+      width: "290px",
+      height: "150px",
+      backgroundColor: mode === "dark" ? "#262626" : "#F8F7F4",
       borderRadius: "10px",
     },
   };
@@ -89,7 +91,7 @@ const Home = () => {
   });
 
   return (
-    <div className="home-wrapper">
+    <div className="wrapper">
       <div className="content-wrapper">
         <div className="select-wrapper">
           <select
@@ -134,13 +136,11 @@ const Home = () => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div className="modal-home-wrapper">
-          <div className="modal-home-content-wrapper">
-            <h2>{chrome.i18n.getMessage("HomeModalTitle")}</h2>
-            <button className="modal-close-button" onClick={closeModal}>
-              {chrome.i18n.getMessage("HomeModalButton")}
-            </button>
-          </div>
+        <div className="modal-wrapper">
+          <h2>{chrome.i18n.getMessage("HomeModalTitle")}</h2>
+          <button className="modal-button" onClick={closeModal}>
+            {chrome.i18n.getMessage("HomeModalButton")}
+          </button>
         </div>
       </Modal>
     </div>

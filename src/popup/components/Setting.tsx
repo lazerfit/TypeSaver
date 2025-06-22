@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { CiCircleInfo } from "react-icons/ci";
 import icon from "../../assets/icon128.png";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Setting = () => {
   const { mode, setMode } = useDarkMode();
@@ -37,19 +38,28 @@ const Setting = () => {
   };
 
   return (
-    <div className="setting-wrapper">
-      <div className="setting-dark-mode-wrapper">
+    <div className="wrapper">
+      <div className="select-wrapper">
         <select
           className="setting-dark-mode-select"
           onChange={(e) => void handleChange(e.target.value)}
         >
-          <option className="dark-mode-item" value="dark">
-            다크모드
+          <option
+            className="dark-mode-item"
+            value="dark"
+            selected={mode === "dark"}
+          >
+            {chrome.i18n.getMessage("ThemeDark")}
           </option>
-          <option className="dark-mode-item" value="light">
-            라이트모드
+          <option
+            className="dark-mode-item"
+            value="light"
+            selected={mode === "light"}
+          >
+            {chrome.i18n.getMessage("ThemeLight")}
           </option>
         </select>
+        <IoIosArrowDown className="select-arrow" />
       </div>
       <div className="setting-about-wrapper">
         <button className="setting-about-btn" onClick={openModal}>

@@ -35,8 +35,8 @@ const Folder = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "200px",
-      height: "110px",
+      width: "290px",
+      height: "130px",
       backgroundColor: mode === "dark" ? "#262626" : "#F8F7F4",
       borderRadius: "10px",
     },
@@ -141,7 +141,7 @@ const Folder = () => {
   };
 
   return (
-    <div className="folder-wrapper">
+    <div className="wrapper">
       <div className="input-wrapper">
         <input
           type="text"
@@ -151,14 +151,14 @@ const Folder = () => {
           onChange={handleInputChange}
         />
         <button className="folder-input-button" onClick={handleSubmit}>
-          추가
+          Add
         </button>
       </div>
       <div className="folder-list">
         {folders.map((folder, index) => (
           <button
             key={index}
-            className="folder-item"
+            className="list-item"
             onClick={() => openModal(folder)}
           >
             {folder.name}
@@ -171,10 +171,10 @@ const Folder = () => {
         style={customStyles}
       >
         {isEditMode ? (
-          <div className="modal-folder-wrapper">
+          <div className="modal-wrapper">
             <input
               type="text"
-              className="modal-edit-name"
+              className="modal-input"
               value={newFolderName}
               onChange={handleNewFolderNameChange}
             ></input>
@@ -188,8 +188,8 @@ const Folder = () => {
             </div>
           </div>
         ) : (
-          <div className="modal-folder-wrapper">
-            <div className="modal-name">{selectedFolder?.name}</div>
+          <div className="modal-wrapper">
+            <div className="modal-title">{selectedFolder?.name}</div>
             <div className="modal-button-wrapper">
               <button
                 onClick={() => handleDeleteFolder(selectedFolder?.id ?? "")}

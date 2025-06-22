@@ -24,8 +24,8 @@ const Folder = () => {
             bottom: "auto",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
-            width: "200px",
-            height: "110px",
+            width: "290px",
+            height: "130px",
             backgroundColor: mode === "dark" ? "#262626" : "#F8F7F4",
             borderRadius: "10px",
         },
@@ -114,6 +114,6 @@ const Folder = () => {
             });
         });
     };
-    return (_jsxs("div", { className: "folder-wrapper", children: [_jsxs("div", { className: "input-wrapper", children: [_jsx("input", { type: "text", className: "folder-input", placeholder: chrome.i18n.getMessage("FolderInputPlaceholder"), value: folderName, onChange: handleInputChange }), _jsx("button", { className: "folder-input-button", onClick: handleSubmit, children: "\uCD94\uAC00" })] }), _jsx("div", { className: "folder-list", children: folders.map((folder, index) => (_jsx("button", { className: "folder-item", onClick: () => openModal(folder), children: folder.name }, index))) }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: isEditMode ? (_jsxs("div", { className: "modal-folder-wrapper", children: [_jsx("input", { type: "text", className: "modal-edit-name", value: newFolderName, onChange: handleNewFolderNameChange }), _jsxs("div", { className: "modal-button-wrapper", children: [_jsx("button", { onClick: handleSubmitEditedFolderName, children: chrome.i18n.getMessage("HomeSaveButton") }), _jsx("button", { onClick: handeEditModeClose, children: chrome.i18n.getMessage("Cancel") })] })] })) : (_jsxs("div", { className: "modal-folder-wrapper", children: [_jsx("div", { className: "modal-name", children: selectedFolder?.name }), _jsxs("div", { className: "modal-button-wrapper", children: [_jsx("button", { onClick: () => handleDeleteFolder(selectedFolder?.id ?? ""), children: chrome.i18n.getMessage("Delete") }), _jsx("button", { onClick: handleEditClick, children: chrome.i18n.getMessage("Modify") })] })] })) })] }));
+    return (_jsxs("div", { className: "wrapper", children: [_jsxs("div", { className: "input-wrapper", children: [_jsx("input", { type: "text", className: "folder-input", placeholder: chrome.i18n.getMessage("FolderInputPlaceholder"), value: folderName, onChange: handleInputChange }), _jsx("button", { className: "folder-input-button", onClick: handleSubmit, children: "Add" })] }), _jsx("div", { className: "folder-list", children: folders.map((folder, index) => (_jsx("button", { className: "list-item", onClick: () => openModal(folder), children: folder.name }, index))) }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: isEditMode ? (_jsxs("div", { className: "modal-wrapper", children: [_jsx("input", { type: "text", className: "modal-input", value: newFolderName, onChange: handleNewFolderNameChange }), _jsxs("div", { className: "modal-button-wrapper", children: [_jsx("button", { onClick: handleSubmitEditedFolderName, children: chrome.i18n.getMessage("HomeSaveButton") }), _jsx("button", { onClick: handeEditModeClose, children: chrome.i18n.getMessage("Cancel") })] })] })) : (_jsxs("div", { className: "modal-wrapper", children: [_jsx("div", { className: "modal-title", children: selectedFolder?.name }), _jsxs("div", { className: "modal-button-wrapper", children: [_jsx("button", { onClick: () => handleDeleteFolder(selectedFolder?.id ?? ""), children: chrome.i18n.getMessage("Delete") }), _jsx("button", { onClick: handleEditClick, children: chrome.i18n.getMessage("Modify") })] })] })) })] }));
 };
 export default Folder;

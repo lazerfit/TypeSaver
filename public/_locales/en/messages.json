@@ -30,7 +30,7 @@
     "message": "🔥 Are you sure you want to delete the folder?"
   },
   "FolderInputPlaceholder": {
-    "message": "Please enter the folder name.."
+    "message": "folder name.."
   },
   "Cancel": {
     "message": "Cancel"
@@ -43,5 +43,11 @@
   },
   "VaultSnippetDeleteConfirm": {
     "message": "🔥 Are you sure you want to delete this snippet?"
+  },
+  "ThemeLight": {
+    "message": "Light"
+  },
+  "ThemeDark": {
+    "message": "Dark"
   }
 }

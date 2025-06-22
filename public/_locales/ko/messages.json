@@ -43,5 +43,11 @@
   },
   "VaultSnippetDeleteConfirm": {
     "message": "🔥 정말로 이 스니펫을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+  },
+  "ThemeLight": {
+    "message": "라이트 모드"
+  },
+  "ThemeDark": {
+    "message": "다크 모드"
   }
 }

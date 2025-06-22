@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 import Toast from "../../common/Toast";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
+import { useDarkMode } from "@rbnd/react-dark-mode";
 Modal.setAppElement("#root");
 const Home = () => {
     const [title, setTitle] = useState("");
@@ -16,6 +17,7 @@ const Home = () => {
     const [toastText, setToastText] = useState("");
     const [showToast, setShowToast] = useState(false);
     const { isModalOpen, openModal, closeModal } = useModal();
+    const { mode } = useDarkMode();
     const customStyles = {
         content: {
             top: "50%",
@@ -24,9 +26,9 @@ const Home = () => {
             bottom: "auto",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
-            width: "220px",
-            height: "120px",
-            backgroundColor: "#F8F7F4",
+            width: "290px",
+            height: "150px",
+            backgroundColor: mode === "dark" ? "#262626" : "#F8F7F4",
             borderRadius: "10px",
         },
     };
@@ -72,8 +74,8 @@ const Home = () => {
             setFolders(storedFolders);
         });
     });
-    return (_jsxs("div", { className: "home-wrapper", children: [_jsxs("div", { className: "content-wrapper", children: [_jsxs("div", { className: "select-wrapper", children: [_jsxs("select", { className: "folder-select", name: "\uD3F4\uB354", value: selectedFolder, onChange: handleFolderChange, children: [_jsx("option", { value: "default", children: chrome.i18n.getMessage("SelectOptionDefault") }), folders.map((folder) => {
+    return (_jsxs("div", { className: "wrapper", children: [_jsxs("div", { className: "content-wrapper", children: [_jsxs("div", { className: "select-wrapper", children: [_jsxs("select", { className: "folder-select", name: "\uD3F4\uB354", value: selectedFolder, onChange: handleFolderChange, children: [_jsx("option", { value: "default", children: chrome.i18n.getMessage("SelectOptionDefault") }), folders.map((folder) => {
                                         return (_jsx("option", { value: folder.name, children: folder.name }, folder.id));
-                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("input", { className: "title-input", type: "text", placeholder: chrome.i18n.getMessage("HomeInputPlaceholder"), value: title, onChange: handleTitleChange }), _jsx("textarea", { className: "text-input", placeholder: chrome.i18n.getMessage("HomeTextareaPlaceholder"), value: text, onChange: handleTextChange }), _jsx("button", { className: "save-button", onClick: handleSubmit, children: _jsx("span", { children: chrome.i18n.getMessage("HomeSaveButton") }) })] }), _jsx(Toast, { text: toastText, showToast: showToast }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsx("div", { className: "modal-home-wrapper", children: _jsxs("div", { className: "modal-home-content-wrapper", children: [_jsx("h2", { children: chrome.i18n.getMessage("HomeModalTitle") }), _jsx("button", { className: "modal-close-button", onClick: closeModal, children: chrome.i18n.getMessage("HomeModalButton") })] }) }) })] }));
+                                    })] }), _jsx(IoIosArrowDown, { className: "select-arrow" })] }), _jsx("input", { className: "title-input", type: "text", placeholder: chrome.i18n.getMessage("HomeInputPlaceholder"), value: title, onChange: handleTitleChange }), _jsx("textarea", { className: "text-input", placeholder: chrome.i18n.getMessage("HomeTextareaPlaceholder"), value: text, onChange: handleTextChange }), _jsx("button", { className: "save-button", onClick: handleSubmit, children: _jsx("span", { children: chrome.i18n.getMessage("HomeSaveButton") }) })] }), _jsx(Toast, { text: toastText, showToast: showToast }), _jsx(Modal, { isOpen: isModalOpen, onRequestClose: closeModal, style: customStyles, children: _jsxs("div", { className: "modal-wrapper", children: [_jsx("h2", { children: chrome.i18n.getMessage("HomeModalTitle") }), _jsx("button", { className: "modal-button", onClick: closeModal, children: chrome.i18n.getMessage("HomeModalButton") })] }) })] }));
 };
 export default Home;

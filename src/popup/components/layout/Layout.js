@@ -5,6 +5,6 @@ import { useOutlet } from "react-router-dom";
 import "./Layout.scss";
 const Layout = () => {
     const outlet = useOutlet();
-    return (_jsxs(_Fragment, { children: [_jsx(Header, {}), _jsx("main", { className: "home", children: outlet }), _jsx(Footer, {})] }));
+    return (_jsxs(_Fragment, { children: [_jsx(Header, {}), _jsx("main", { children: outlet }), _jsx(Footer, {})] }));
 };
 export default Layout;
