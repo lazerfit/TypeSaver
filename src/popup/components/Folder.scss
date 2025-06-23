@@ -2,9 +2,12 @@
   @include flex-center;
   width: 100%;
 
+  .folder-input {
+    border-radius: 10px;
+  }
+
   .folder-input-button {
     margin-left: 5px;
-    border-radius: 5px;
   }
 }
 
