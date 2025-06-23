@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, _sendResponse) => {
             if (activeElement.tagName === "INPUT" ||
                 activeElement.tagName === "TEXTAREA") {
                 const inputOrTextArea = activeElement;
-                inputOrTextArea.value = msg.text ?? "";
+                inputOrTextArea.value += msg.text ?? "";
                 inputOrTextArea.dispatchEvent(new Event("input", { bubbles: true }));
             }
             else if (activeElement.isContentEditable) {

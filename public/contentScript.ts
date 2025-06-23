@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
           const inputOrTextArea = activeElement as
             | HTMLInputElement
             | HTMLTextAreaElement;
-          inputOrTextArea.value = msg.text ?? "";
+          inputOrTextArea.value += msg.text ?? "";
           inputOrTextArea.dispatchEvent(new Event("input", { bubbles: true }));
         } else if (activeElement.isContentEditable) {
           const textToInsert = msg.text ?? "";
