@@ -6,6 +6,14 @@ import { useModal } from "../../hooks/useModal";
 import type { Folder } from "./Folder";
 import { useDarkMode } from "@rbnd/react-dark-mode";
 import { IoCopyOutline } from "react-icons/io5";
+import {
+  type DraggableProvided,
+  DragDropContext,
+  Droppable,
+  Draggable,
+  type DropResult,
+} from "@hello-pangea/dnd";
+import { reorder, getItemStyle } from "../../util/DragndropUtil";
 
 Modal.setAppElement("#root");
 
@@ -64,6 +72,36 @@ const Vault = () => {
     setSnippetTitle(title);
   };
 
+  const handleSubmit = () => {
+    if (
+      snippetTitle.trim() === "" ||
+      snippetText.trim() === "" ||
+      !selectedSnippet
+    )
+      return;
+    else {
+      const updatedSnippet = {
+        ...selectedSnippet,
+        title: snippetTitle.trim(),
+        text: snippetText.trim(),
+      };
+      chrome.storage.local.get([folderName], (result) => {
+        const folder: Snippet[] = (result[folderName] as Snippet[]) ?? [];
+        const updatedFolder = folder.map((s) =>
+          s.id === selectedSnippet?.id ? updatedSnippet : s,
+        );
+        chrome.storage.local.set({ [folderName]: updatedFolder }, () => {
+          setSnippetsByFolder(updatedFolder);
+          closeModal();
+          setSelectedSnippet(null);
+          setIsEditMode(false);
+          setSnippetText("");
+          setSnippetTitle("");
+        });
+      });
+    }
+  };
+
   const handleOnChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSnippetTitle(event.target.value);
   };
@@ -102,6 +140,22 @@ const Vault = () => {
       .catch((e) => console.error("Failed to copy text:", e));
   };
 
+  const handleOnDragEnd = (result: DropResult) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const reorderedItems = reorder(
+      snippetsByFolder,
+      result.source.index,
+      result.destination.index,
+    );
+
+    chrome.storage.local.set({ [folderName]: reorderedItems }, () => {
+      setSnippetsByFolder(reorderedItems);
+    });
+  };
+
   useEffect(() => {
     chrome.storage.local.get("folder", (result) => {
       setFolderList((result.folder as Folder[]) ?? []);
@@ -136,26 +190,55 @@ const Vault = () => {
           </select>
           <IoIosArrowDown className="select-arrow" />
         </div>
-        <div className="snippet-list-wrapper">
-          {snippetsByFolder.map((snippet) => (
-            <button
-              key={snippet.id}
-              className="list-item"
-              onClick={() => openModal(snippet)}
-            >
-              {snippet.title}
-              <button
-                type="button"
-                className="snippet-item-copy-button"
-                onClick={(e) => handleCopyText(e, snippet.text)}
-                tabIndex={0}
-                aria-label="복사"
-              >
-                <IoCopyOutline className="copy-button" />
-              </button>
-            </button>
-          ))}
-        </div>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="snippet-list-wrapper">
+            {(provided) => (
+              <>
+                <div
+                  className="snippet-list-wrapper"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {snippetsByFolder.map((snippet, index) => (
+                    <Draggable
+                      key={snippet.id}
+                      draggableId={snippet.id}
+                      index={index}
+                    >
+                      {(provided: DraggableProvided, snapshot) => (
+                        <>
+                          <div
+                            className="draggableDiv"
+                            onClick={() => openModal(snippet)}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style,
+                            )}
+                          >
+                            {snippet.title}
+                            <button
+                              type="button"
+                              className="snippet-item-copy-button"
+                              onClick={(e) => handleCopyText(e, snippet.text)}
+                              tabIndex={0}
+                              aria-label="복사"
+                            >
+                              <IoCopyOutline className="copy-button" />
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              </>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
       <Modal
         isOpen={isModalOpen}
@@ -180,7 +263,7 @@ const Vault = () => {
                 onChange={handleOnChangeText}
               />
               <div className="modal-button-wrapper">
-                <button className="modal-button">
+                <button className="modal-button" onClick={handleSubmit}>
                   {chrome.i18n.getMessage("HomeSaveButton")}
                 </button>
                 <button className="modal-button" onClick={handleCloseEditMode}>

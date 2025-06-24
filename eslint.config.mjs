@@ -5,7 +5,6 @@ import { fixupPluginRules } from "@eslint/compat";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import jsxA11y from "eslint-plugin-jsx-a11y";
 import prettierPluginRecommended from "eslint-plugin-prettier/recommended";
 
 export default tseslint.config(
@@ -15,7 +14,6 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  jsxA11y.flatConfigs.recommended,
   prettierPluginRecommended,
   {
     languageOptions: {
