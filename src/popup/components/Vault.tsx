@@ -218,7 +218,7 @@ const Vault = () => {
                               provided.draggableProps.style,
                             )}
                           >
-                            {snippet.title}
+                            <div className="snippet-title">{snippet.title}</div>
                             <button
                               type="button"
                               className="snippet-item-copy-button"
