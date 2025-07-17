@@ -6,6 +6,9 @@ import { useModal } from "../../hooks/useModal";
 import type { Folder } from "./Folder";
 import { useDarkMode } from "@rbnd/react-dark-mode";
 import { IoCopyOutline } from "react-icons/io5";
+import { CiStar } from "react-icons/ci";
+import { TiStarFullOutline } from "react-icons/ti";
+import { handleCopyText } from "../../util/CommonUtils";
 import {
   type DraggableProvided,
   DragDropContext,
@@ -14,10 +17,11 @@ import {
   type DropResult,
 } from "@hello-pangea/dnd";
 import { reorder, getItemStyle } from "../../util/DragndropUtil";
+import * as React from "react";
 
 Modal.setAppElement("#root");
 
-interface Snippet {
+export interface Snippet {
   id: string;
   title: string;
   text: string;
@@ -41,6 +45,8 @@ const Vault = () => {
     closeModal: modalClose,
   } = useModal();
   const { mode } = useDarkMode();
+  const [shouldFavoriteRefetch, setShouldFavoriteRefetch] = useState(false);
+  const [favoriteSnippets, setFavoriteSnippets] = useState<Snippet[]>([]);
 
   const customStyles = {
     content: {
@@ -48,6 +54,7 @@ const Vault = () => {
       left: "50%",
       right: "auto",
       bottom: "auto",
+      borderRadius: "10px",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       width: "300px",
@@ -130,16 +137,6 @@ const Vault = () => {
     });
   };
 
-  const handleCopyText = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    text: string,
-  ) => {
-    e.stopPropagation();
-    navigator.clipboard
-      .writeText(text)
-      .catch((e) => console.error("Failed to copy text:", e));
-  };
-
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
@@ -156,6 +153,32 @@ const Vault = () => {
     });
   };
 
+  const handleSaveFavoriteSnippet = (snippet: Snippet) => {
+    if (favoriteSnippets.some((s) => s.id === snippet.id)) return;
+    const updatedSnippet = { ...snippet, folder: "favoriteSnippets" };
+    const updatedFavoriteSnippets = [...favoriteSnippets, updatedSnippet];
+    chrome.storage.local.set(
+      { favoriteSnippets: updatedFavoriteSnippets },
+      () => {
+        setFavoriteSnippets(updatedFavoriteSnippets);
+        setShouldFavoriteRefetch(true);
+      },
+    );
+  };
+
+  const handleRemoveFavoriteSnippet = (snippet: Snippet) => {
+    const updatedFavoriteSnippets = favoriteSnippets.filter(
+      (s) => s.id !== snippet.id,
+    );
+    chrome.storage.local.set(
+      { favoriteSnippets: updatedFavoriteSnippets },
+      () => {
+        setFavoriteSnippets(updatedFavoriteSnippets);
+        setShouldFavoriteRefetch(true);
+      },
+    );
+  };
+
   useEffect(() => {
     chrome.storage.local.get("folder", (result) => {
       setFolderList((result.folder as Folder[]) ?? []);
@@ -167,6 +190,21 @@ const Vault = () => {
       setSnippetsByFolder((result[folderName] as Snippet[]) ?? []);
     });
   }, [folderName]);
+
+  useEffect(() => {
+    if (shouldFavoriteRefetch) {
+      chrome.storage.local.get(["favoriteSnippets"], (result) => {
+        setFavoriteSnippets((result.favoriteSnippets as Snippet[]) ?? []);
+        setShouldFavoriteRefetch(false);
+      });
+    }
+  }, [shouldFavoriteRefetch]);
+
+  useEffect(() => {
+    chrome.storage.local.get(["favoriteSnippets"], (result) => {
+      setFavoriteSnippets((result.favoriteSnippets as Snippet[]) ?? []);
+    });
+  }, []);
 
   return (
     <div className="wrapper">
@@ -219,6 +257,28 @@ const Vault = () => {
                             )}
                           >
                             <div className="snippet-title">{snippet.title}</div>
+                            <button
+                              className="favorite-snippets-save-button"
+                              tabIndex={1}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSaveFavoriteSnippet(snippet);
+                              }}
+                            >
+                              {favoriteSnippets.some(
+                                (s) => s.id === snippet.id,
+                              ) ? (
+                                <TiStarFullOutline
+                                  className="favorite-snippets-header-icon"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveFavoriteSnippet(snippet);
+                                  }}
+                                />
+                              ) : (
+                                <CiStar className="favorite-snippet-empty-star" />
+                              )}
+                            </button>
                             <button
                               type="button"
                               className="snippet-item-copy-button"

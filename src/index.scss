@@ -4,7 +4,7 @@ body {
 
 .light-mode {
   color-scheme: light;
-  background-color: #F8F7F4;
+  background-color: #f8f7f4;
   color: black;
 
   input,
@@ -29,7 +29,7 @@ body {
     .modal-name,
     .modal-edit-name,
     .modal-input,
-    .modal-textarea{
+    .modal-textarea {
       background-color: #17171b;
       color: #f7f7f7;
     }
@@ -48,7 +48,7 @@ body {
   }
 
   button {
-    background-color: #F8F7F4;
+    background-color: #f8f7f4;
     color: black;
     border: 1px solid white;
 
@@ -56,5 +56,9 @@ body {
       background-color: #6c6fe6;
     }
   }
-}
 
+  .favorite-snippets-header,
+  .hotkey-button {
+    border: 1px solid white;
+  }
+}

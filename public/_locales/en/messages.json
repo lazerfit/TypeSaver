@@ -55,5 +55,14 @@
   },
   "DefaultFolderName": {
     "message": "Default"
+  },
+  "favoriteSnippetText1": {
+    "message": "Add your favorite snippets and use"
+  },
+  "favoriteSnippetText2": {
+    "message": "for instant access."
+  },
+  "favoriteSnippetTitle": {
+    "message": "Favorites"
   }
 }

@@ -1,6 +1,6 @@
 .select-wrapper {
   &::before {
-    content: '테마';
+    content: "테마";
     position: absolute;
     top: -20px;
     left: 10px;
@@ -33,7 +33,6 @@
   @include flex-center;
   flex-direction: column;
   width: 100%;
-
 
   .modal-setting-description {
     @include flex-center;

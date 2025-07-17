@@ -1,6 +1,12 @@
 import "./Footer.scss";
 import { useNavigate } from "react-router-dom";
-import { CiSettings, CiHome, CiVault, CiFolderOn } from "react-icons/ci";
+import {
+  CiSettings,
+  CiHome,
+  CiVault,
+  CiFolderOn,
+  CiStar,
+} from "react-icons/ci";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -15,6 +21,7 @@ const Footer = () => {
             className="icon"
             onClick={() => void navigate("/folder")}
           />
+          <CiStar className="icon" onClick={() => void navigate("/favorite")} />
           <CiSettings
             className="icon"
             onClick={() => void navigate("/setting")}
